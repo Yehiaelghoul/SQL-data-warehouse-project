@@ -66,10 +66,6 @@ It aims to show a full **ETL pipeline** — from raw data ingestion to business-
 
 ## 🚀 Getting Started
 
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/<your-username>/<your-repo-name>.git
-cd <your-repo-name>
 📁 src/
  ┣ 📂 ingestion/
  ┣ 📂 transformation/
@@ -84,37 +80,41 @@ cd <your-repo-name>
  ┣ 📂 cleansed/
  ┗ 📂 gold/
 
-3️⃣ How to Run
+### 3️⃣ How to Run
 
-Place your .csv files from CRM/ERP into the data/raw/ folder.
+1. Place your `.csv` files from **CRM** and **ERP** into the `data/raw/` folder.  
+2. Run SQL scripts from `/src/transformation/` sequentially:
+   - `01_bronze_to_silver.sql`
+   - `02_silver_to_gold.sql`
+3. Connect your BI tool (e.g., Power BI) to the **Gold Layer** tables for analytics.
 
-Run SQL scripts from /src/transformation/ sequentially:
+---
 
-01_bronze_to_silver.sql
+## 🧠 Key Learnings
 
-02_silver_to_gold.sql
+- Hands-on practice with the **Data Warehouse lifecycle**
+- Applied **Data Cleansing**, **Normalization**, and **Aggregation**
+- Designed a **Star Schema** data model
+- Prepared data for **BI Dashboards** and **Machine Learning**
 
-Connect your BI tool to the Gold layer tables for analytics.
+---
 
-🧠 Key Learnings
+## 📄 License
 
-Hands-on practice with Data Warehouse lifecycle
+This project is licensed under the **MIT License**.  
+You may freely use, modify, and distribute this project with attribution.  
+For full details, see the [LICENSE](./LICENSE) file.
 
-Applied Data Cleansing, Normalization, and Aggregation
+---
 
-Built Star Schema data model
+## ✨ Author
 
-Prepared data for BI dashboards and Machine Learning
-
-📄 License
-
-This project is licensed under the MIT License
- — feel free to use, modify, and share with attribution.
-
-✨ Author
-
-Yehia Ibrahim
-📍 Cairo, Egypt
-💼 Planning Engineer | Aspiring Data Analyst
-📧 yehiaelghool20155@gmail.com
+**Yehia Ibrahim**  
+📍 *Cairo, Egypt*  
+💼 Aspiring Data Analyst
+📧 yehaielghool20155@gmail.com 
 🌐 https://www.linkedin.com/in/yehia-elghoul-645941192/
+
+---
+
+### ⭐ If you found this project helpful, consider giving it a star!
