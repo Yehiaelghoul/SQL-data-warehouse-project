@@ -112,8 +112,8 @@ For full details, see the [LICENSE](./LICENSE) file.
 **Yehia Ibrahim**  
 📍 *Cairo, Egypt*  
 💼 Aspiring Data Analyst
-📧 yehaielghool20155@gmail.com 
-🌐 https://www.linkedin.com/in/yehia-elghoul-645941192/
+📧 [yehaielghool20155@gmail.com] 
+🌐 [https://www.linkedin.com/in/yehia-elghoul-645941192/]
 
 ---
 
