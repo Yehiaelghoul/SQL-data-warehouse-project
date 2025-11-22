@@ -1,119 +1,154 @@
-# 🏗️ Data Warehouse Project
+# 🏗️ Modern Data Warehouse Project  
+**End-to-End Medallion Architecture (Bronze → Silver → Gold)**  
 
-## 📘 Overview
-This project demonstrates a **modern Data Warehouse architecture** built using the **Medallion (Bronze–Silver–Gold)** design pattern.  
-It aims to show a full **ETL pipeline** — from raw data ingestion to business-ready analytics — leveraging SQL-based processing and modular data transformation principles.
+This project demonstrates a complete, production-style **Data Warehouse lifecycle**, including ingestion, cleansing, transformation, dimensional modeling, and analytics consumption.  
+It follows the **Medallion Architecture** design pattern widely used in modern data engineering.
 
 ---
 
-## 🧱 Architecture Layers
+# 📐 High-Level Architecture
 
 ![Data Warehouse Architecture](./DW%20-%20Architecture%20Design.png)
 
-### **1. Sources**
-- **CRM** and **ERP** systems exporting data as `.csv` files.  
-- Data is ingested from **file-based interfaces** (folders or shared drives).
-
-### **2. Bronze Layer (Raw Data)**
-- **Object Type:** Tables  
-- **Load Type:** Batch Processing (Full Load - Truncate & Insert)  
-- **Transformation:** None — data stored *as-is*.  
-- **Purpose:** Preserve the original state of data for traceability and auditing.
-
-### **3. Silver Layer (Cleansed / Standardized Data)**
-- **Object Type:** Tables  
-- **Load Type:** Batch Processing (Full Load - Truncate & Insert)  
-- **Transformations:**
-  - Data Cleansing  
-  - Standardization  
-  - Normalization  
-  - Derived Columns  
-  - Data Enrichment  
-- **Purpose:** Provide consistent, quality-controlled data ready for modeling.
-
-### **4. Gold Layer (Business-Ready Data)**
-- **Object Type:** Tables  
-- **Transformation:**
-  - Data Integration  
-  - Aggregations  
-  - Business Logic  
-- **Data Model:** 
-  - Star Schema  
-  - Flat Tables  
-  - Aggregated Tables  
-- **Purpose:** Support **Business Intelligence**, **Reporting**, and **Machine Learning** use cases.
+The diagram above illustrates the full data flow from **raw CSV sources** to **business-ready analytical models**.
 
 ---
 
-## 📊 Consumption Layer
-- **BI & Reporting Tools** (e.g., Power BI, Tableau)
-- **Ad-hoc SQL Queries** for analysts  
-- **Machine Learning Pipelines** consuming curated data
+# 🧱 Architecture Explanation
+
+## 🔶 1️⃣ **Source Systems**
+Operational source systems exporting `.csv` datasets:
+
+- **CRM System:** Customer interactions, leads, sales activities  
+- **ERP System:** Products, orders, transactions, operations  
+
+📂 *Data is delivered into file-based interfaces (local folders or shared network drives).*
 
 ---
 
-## 🛠️ Tech Stack
-| Layer | Tools / Technologies |
-|-------|----------------------|
-| Data Storage | SQL Database |
-| Data Ingestion | Batch Processing (CSV interface) |
-| Transformation | SQL Scripts / ETL Framework |
-| Visualization | Power BI (or any BI Tool) |
+## 🟫 2️⃣ **Bronze Layer – Raw Data**
+A landing zone storing **exact copies** of incoming source data.
+
+### ✔ Purpose
+- Preserve raw, untouched data for audit and traceability  
+- Allow full historical reprocessing  
+- Ensure ingestion reliability
+
+### ✔ Technical Characteristics
+- **Load Type:** Batch — Full Load (TRUNCATE + INSERT)  
+- **Transformations:** None (as-is)  
+- **Model:** Non-structured, same structure as source  
+
+---
+
+## 🪙 3️⃣ **Silver Layer – Cleansed & Standardized Data**
+This layer applies the main ETL work to fix, clean, and standardize data.
+
+### ✔ Transformations Applied
+- Data Cleansing (nulls, formats, types)  
+- Standardization  
+- Normalization  
+- Derived fields  
+- Data Enrichment  
+
+### ✔ Purpose
+Provide **high-quality, consistent datasets** ready for analytical modeling.
+
+---
+
+## 🟧 4️⃣ **Gold Layer – Business-Ready Data**
+The final curated layer supporting analytics, dashboards, and ML.
+
+### ✔ Core Transformations
+- Business Logic implementation  
+- Aggregations  
+- Data Integration (joining CRM + ERP)  
+
+### ✔ Data Modeling
+- **Star Schema**  
+- **Fact & Dimension Tables**  
+- **Aggregated Reporting Tables**  
+- **Flat analytics tables**  
+
+### ✔ Purpose
+Deliver **fast, business-friendly datasets** for BI and decision-making.
+
+---
+
+# 📊 Consumption Layer
+The output layer for end users and analytical systems:
+
+- **Power BI** dashboards & KPI reporting  
+- **Ad-Hoc SQL Analysis**  
+- **Machine Learning pipelines** fed from Gold data  
+
+---
+
+# 🛠️ Tech Stack
+
+| Layer | Tools |
+|------|-------|
+| Storage | SQL Database |
+| Ingestion | Batch Processing (CSV → SQL) |
+| Transformation | SQL ETL Scripts |
+| Modeling | Star Schema / Dimensional Modeling |
+| Visualization | Power BI |
 | Version Control | GitHub |
-| License | MIT License |
+| Execution | Manual / Scripted ETL |
 
 ---
 
-## 🚀 Getting Started
+# 🚀 Project Structure
 
-📁 src/
- ┣ 📂 ingestion/
- ┣ 📂 transformation/
- ┣ 📂 models/
- ┗ 📂 reports/
 
-📁 docs/
- ┗ DW - Architecture Design.png
+├─ ingestion/
+├─ transformation/
+├─ models/
+└─ reports/
 
-📁 data/
- ┣ 📂 raw/
- ┣ 📂 cleansed/
- ┗ 📂 gold/
+docs/
+└─ DW - Architecture Design.png
 
-### 3️⃣ How to Run
+data/
+├─ raw/
+├─ cleansed/
+└─ gold/
 
-1. Place your `.csv` files from **CRM** and **ERP** into the `data/raw/` folder.  
-2. Run SQL scripts from `/src/transformation/` sequentially:
+---
+
+# ▶️ 3. How to Run
+
+1. Place incoming `.csv` source files (CRM, ERP) in:  
+   `data/raw/`
+2. Run transformation SQL scripts in this order:
    - `01_bronze_to_silver.sql`
    - `02_silver_to_gold.sql`
-3. Connect your BI tool (e.g., Power BI) to the **Gold Layer** tables for analytics.
+3. Connect your BI tool (Power BI / Tableau) to the **Gold Layer** tables.
 
 ---
 
-## 🧠 Key Learnings
+# 🧠 Key Learnings & Outcomes
 
-- Hands-on practice with the **Data Warehouse lifecycle**
-- Applied **Data Cleansing**, **Normalization**, and **Aggregation**
-- Designed a **Star Schema** data model
-- Prepared data for **BI Dashboards** and **Machine Learning**
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**.  
-You may freely use, modify, and distribute this project with attribution.  
-For full details, see the [LICENSE](./LICENSE) file.
+- Built a full **Medallion Architecture** DWH from scratch  
+- Applied **Data Cleaning, Standardization, & Enrichment**  
+- Designed a **Star Schema** for the Gold Layer  
+- Enabled **BI reporting** on clean business-ready data  
+- Hands-on experience in SQL-based ETL workflows  
 
 ---
 
-## ✨ Author
+# 📄 License
+This project is published under the **MIT License**.  
+For details, see the included [LICENSE](./LICENSE) file.
 
+---
+
+# ✨ Author  
 **Yehia Ibrahim**  
-📍 *Cairo, Egypt*  
-💼 Aspiring Data Analyst
-📧 [yehaielghool20155@gmail.com] 
-🌐 [https://www.linkedin.com/in/yehia-elghoul-645941192/]
+📍 Cairo, Egypt  
+💼 Aspiring Data Analyst  
+📧 yehaielghool20155@gmail.com  
+🔗 https://www.linkedin.com/in/yehia-elghoul-645941192/
 
 ---
 
