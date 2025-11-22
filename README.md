@@ -8,7 +8,7 @@ It follows the **Medallion Architecture** design pattern widely used in modern d
 
 # 📐 High-Level Architecture
 
-![Uploading DW - Architecture Design.png…]()
+<img width="1059" height="741" alt="DW - Architecture Design" src="https://github.com/user-attachments/assets/56463286-f971-4494-918a-83ae391e35f9" />
 
 The diagram above illustrates the full data flow from **raw CSV sources** to **business-ready analytical models**.
 
